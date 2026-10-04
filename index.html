@@ -68,6 +68,8 @@ table{border-collapse:collapse;width:100%;font-size:.93rem}
 th,td{padding:6px 12px;text-align:center;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
 th{background:var(--accent-soft);font-weight:500}
 tr:last-child td{border-bottom:0}
+.part{margin:.35rem 0}
+table.left td,table.left th{text-align:left;vertical-align:top}
 details{margin-top:.6rem;border-top:1px dashed var(--line);padding-top:.5rem}
 summary{cursor:pointer;color:var(--accent);font-weight:500}
 summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
@@ -86,11 +88,12 @@ footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);color
     <span><b>選擇題</b> 15 題,每題 2 分</span>
     <span><b>填充題</b> 13 題</span>
     <span><b>問答題</b> 8 題,共 34 分</span>
+    <span><b>分析題</b> 6 題,共 44 分</span>
   </div>
 </header>
 
 <nav aria-label="部分">
-  <a href="#mc">選擇題</a><a href="#fb">填充題</a><a href="#qa">問答題</a>
+  <a href="#mc">選擇題</a><a href="#fb">填充題</a><a href="#qa">問答題</a><a href="#an">分析題</a>
   <span id="score" aria-live="polite"></span>
 </nav>
 
@@ -113,6 +116,11 @@ footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);color
 <section id="qa">
   <div class="sec-head"><h2>第三部分 問答題</h2><span>先自己作答,再點開參考答案對照給分點</span></div>
   <div id="qa-list"></div>
+</section>
+
+<section id="an">
+  <div class="sec-head"><h2>第四部分 分析題</h2><span>根據情境或數據作答,寫出理由和證據</span></div>
+  <div id="an-list"></div>
 </section>
 
 <footer>題目依校本高三級生物科第一段大測大綱編寫。</footer>
@@ -172,6 +180,31 @@ var QA=[
  p:["層次由小到大:細胞 → 組織 → 器官 → 系統(1 分)","胃是器官,屬於消化系統(1 分)","胃由上皮組織(分泌胃液)、肌肉組織(令胃蠕動)組成(1 分)","還有神經組織(傳遞信號)和結締組織(連接支持)(1 分)"]},
 {m:5,q:"比較原核細胞和真核細胞。請寫出三項分別和兩項共同結構。",
  p:["分別一:原核細胞沒有核膜包圍的細胞核,DNA 在擬核;真核細胞有真正的細胞核(1 分)","分別二:原核細胞沒有膜細胞器;真核細胞有(1 分)","分別三,任意一項:原核細胞較小;細胞壁成分不同(1 分)","共同結構,任意兩項:細胞膜、細胞質、核糖體、以 DNA 作遺傳物質(2 分)"]}
+];
+
+var AN=[
+{m:7,q:"情境判斷:下表是對三個對象的觀察記錄。",
+ tbl:[["對象","觀察"],["X","受單側光照射後,莖向光彎曲生長;吸收二氧化碳並放出氧氣;幾個月內長高並結出種子。"],["Y","在水中游動,遇到強光會游開;吞食水中的細菌;身體變長後分裂成兩個。"],["Z","一塊燃燒的木炭,發出光和熱,消耗氧氣並產生二氧化碳,體積逐漸縮小。"]],left:true,
+ parts:["(a) 指出 X 表現的三項生命特徵,並各引用一項證據。(3 分)","(b) Y 是單細胞生物。Y 能否獨立完成生命活動?引用證據支持你的答案。(2 分)","(c) Z 有發熱、消耗氧氣等表現,但它不是生物。解釋原因。(2 分)"],
+ p:["(a) 任意三項,每項特徵配證據各 1 分:感應(莖向光彎曲)、營養(吸收二氧化碳進行光合作用)、生長(長高)、生殖(結出種子)(3 分)","(b) 能(1 分)。Y 一個細胞就能感應(遇強光游開)、運動(游動)、營養(吞食細菌)和生殖(分裂)(1 分)","(c) Z 沒有細胞結構(1 分);它不能感應環境,不能生長(體積縮小),也不能生殖,只是燃燒這種化學反應(1 分)"]},
+{m:6,q:"實驗設計分析:某同學研究肥料濃度對番茄苗生長的影響。他把番茄苗分成四組,每組 5 株,分別每天施用 50 mL 濃度為 0%、1%、2%、4% 的肥料溶液。四組放在同一個溫室,使用相同的泥土和花盆。四星期後,量度每組番茄苗的平均高度。",
+ parts:["(a) 指出這個實驗的自變量和因變量。(2 分)","(b) 指出兩項控制變量。(2 分)","(c) 為甚麼要設 0% 肥料的一組?(1 分)","(d) 為甚麼每組用 5 株,而不是 1 株?(1 分)"],
+ p:["(a) 自變量是肥料濃度;因變量是番茄苗的平均高度(2 分)","(b) 任意兩項:施肥的體積(50 mL)、施肥次數、溫室的光照和溫度、泥土種類、花盆、番茄苗品種、實驗時間(2 分)","(c) 作對照組,用來和施肥的組別比較,看出肥料的效果(1 分)","(d) 增加樣本量,減少個別植株差異造成的偶然誤差,令結果更可靠(1 分)"]},
+{m:8,q:"數據分析:下表是上一題實驗四星期後的結果。",
+ tbl:[["肥料濃度 (%)","0","1","2","4"],["番茄苗平均高度 (cm)","12.0","18.5","24.0","15.5"]],
+ parts:["(a) 描述結果的趨勢,並引用數據。(2 分)","(b) 寫出你從數據得出的結論。(2 分)","(c) 能否斷定 2% 就是最適合的肥料濃度?解釋你的答案。(2 分)","(d) 提出一個方法令結果更可靠,並說明理由。(2 分)"],
+ p:["(a) 濃度由 0% 增至 2%,高度上升,由 12.0 cm 增至 24.0 cm(1 分);濃度再增至 4%,高度下降至 15.5 cm(1 分)","(b) 在這四個濃度中,2% 的肥料令番茄苗平均長得最高(1 分);濃度太高(4%)時,高度反而比 2% 時低,所以肥料不是越多越好(1 分)","(c) 不能(1 分);實驗只測試了四個濃度,例如 1.5% 或 3% 沒有測試,最適合的濃度可能在其他位置(1 分)","(d) 每個濃度用更多株番茄苗,並重複實驗後取平均值(1 分);這樣可以減少偶然誤差(1 分)"]},
+{m:10,q:"細胞結構與功能:下表比較四種細胞內某些細胞器的含量。四種細胞分別是:胰腺細胞(分泌消化酶)、飛行肌細胞、睪丸細胞(分泌雄激素)和白血球。",
+ tbl:[["細胞","線粒體","粗糙內質網","高爾基體","滑面內質網","溶酶體"],["甲","多","少","少","非常多","少"],["乙","少","少","少","少","非常多"],["丙","少","非常多","非常多","少","少"],["丁","非常多","少","少","少","少"]],
+ parts:["(a) 判斷甲、乙、丙、丁各是哪一種細胞。(4 分)","(b) 解釋丁為何含有大量線粒體。(2 分)","(c) 說明丙製造消化酶時,粗糙內質網和高爾基體各負責甚麼工作。(2 分)","(d) 解釋甲為何含有大量滑面內質網。(2 分)"],
+ p:["(a) 甲是睪丸細胞,乙是白血球,丙是胰腺細胞,丁是飛行肌細胞(每項 1 分)","(b) 飛行肌細胞需要大量能量來收縮(1 分);線粒體進行有氧呼吸,釋放能量(1 分)","(c) 粗糙內質網負責合成蛋白質(消化酶)(1 分);高爾基體負責加工和分泌蛋白質(1 分)","(d) 睪丸細胞分泌的雄激素由脂質組成(1 分);滑面內質網負責合成和分泌脂質(1 分)"]},
+{m:8,q:"原核與真核細胞辨識:下表記錄了三種細胞的結構。三種細胞分別是細菌細胞、動物細胞和植物葉肉細胞。",
+ tbl:[["結構","細胞 P","細胞 Q","細胞 R"],["細胞膜","有","有","有"],["細胞壁","有","無","有"],["核糖體","有","有","有"],["核膜包圍的細胞核","無","有","有"],["線粒體","無","有","有"],["葉綠體","無","無","有"]],
+ parts:["(a) 哪一種是原核細胞?寫出兩項證據。(2 分)","(b) 細胞 Q 是動物細胞還是植物細胞?寫出兩項證據。(2 分)","(c) 細胞 R 是動物細胞還是植物細胞?寫出兩項證據。(2 分)","(d) 寫出三種細胞都有的兩項結構。(2 分)"],
+ p:["(a) P 是原核細胞(1 分);沒有核膜包圍的細胞核,也沒有線粒體等膜細胞器(1 分)","(b) Q 是動物細胞(1 分);有細胞核和線粒體,但沒有細胞壁和葉綠體(1 分)","(c) R 是植物細胞(1 分);有細胞壁和葉綠體,又有真正的細胞核(1 分)","(d) 細胞膜、核糖體(每項 1 分)"]},
+{m:5,q:"組織層次:小腸壁的內層是上皮組織,負責吸收養分;外層是肌肉組織,負責推動食物前進。小腸上皮細胞需要大量能量進行吸收。",
+ parts:["(a) 把下列項目按由小到大的複雜程度排列:小腸、上皮組織、消化系統、小腸上皮細胞。(2 分)","(b) 小腸是組織還是器官?解釋你的答案。(2 分)","(c) 解釋小腸上皮細胞為何含有大量線粒體。(1 分)"],
+ p:["(a) 小腸上皮細胞 → 上皮組織 → 小腸 → 消化系統(2 分;只錯一個位置給 1 分)","(b) 小腸是器官(1 分);它由上皮組織、肌肉組織等多種組織組成,共同執行消化和吸收的功能(1 分)","(c) 吸收營養需要能量,線粒體進行有氧呼吸提供能量(1 分)"]}
 ];
 
 var mcDone=0, mcRight=0, fbRight=0, fbTotal=0, fbChecked=false;
@@ -251,23 +284,25 @@ function checkFB(){
   updateScore();
 }
 
-function buildQA(){
-  var box=document.getElementById("qa-list");
-  QA.forEach(function(item,i){
+function buildQA(boxId,list){
+  var box=document.getElementById(boxId);
+  list.forEach(function(item,i){
     var d=el("div","q");
     var qt=el("div","qtext",(i+1)+". "+item.q);
     qt.appendChild(el("span","mk",item.m+" 分"));
     d.appendChild(qt);
+    if(item.intro)d.appendChild(el("p","",item.intro));
     if(item.tbl){
-      var w=el("div","tw"),t=el("table");
+      var w=el("div","tw"),t=el("table");if(item.left)t.className="left";
       item.tbl.forEach(function(r,ri){
         var tr=el("tr");
         r.forEach(function(c){tr.appendChild(el(ri===0||tr.children.length===0?"th":"td","",c))});
         t.appendChild(tr);
       });
       w.appendChild(t);d.appendChild(w);
-      d.appendChild(el("p","qtext",item.sub));
+      if(item.sub)d.appendChild(el("p","qtext",item.sub));
     }
+    (item.parts||[]).forEach(function(x){d.appendChild(el("p","part",x))});
     var det=el("details");det.appendChild(el("summary","","參考答案及給分點"));
     var ul=el("ul");item.p.forEach(function(x){ul.appendChild(el("li","",x))});
     det.appendChild(ul);d.appendChild(det);box.appendChild(d);
@@ -277,7 +312,7 @@ function buildQA(){
 document.getElementById("mc-reset").addEventListener("click",buildMC);
 document.getElementById("fb-reset").addEventListener("click",buildFB);
 document.getElementById("fb-check").addEventListener("click",checkFB);
-buildMC();buildFB();buildQA();
+buildMC();buildFB();buildQA("qa-list",QA);buildQA("an-list",AN);
 </script>
 
 </body></html>
