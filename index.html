@@ -1,0 +1,283 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>高三生物第一段大測練習題</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<style>
+/* Layout: one reading column, sticky section chips with a live score, three parts (選擇 / 填充 / 問答), answers revealed per question */
+:root{
+  --bg:#F5F8F7; --surface:#FFFFFF; --fg:#16262B; --muted:#5A6D72; --line:#D5DFDD;
+  --accent:#0C6A5B; --accent-soft:#DDF0EA; --mark:#E8F57F;
+  --ok:#1E7A4B; --ok-soft:#DDF3E6; --bad:#B83A22; --bad-soft:#FBEAE5;
+  --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F1A1D; --surface:#16252A; --fg:#E4EEEC; --muted:#93A8AC; --line:#2A3E43;
+  --accent:#5CCBB5; --accent-soft:#17383A; --mark:#5E6B12;
+  --ok:#6FD39A; --ok-soft:#173A29; --bad:#F2917B; --bad-soft:#3A201B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1A1D; --surface:#16252A; --fg:#E4EEEC; --muted:#93A8AC; --line:#2A3E43;
+  --accent:#5CCBB5; --accent-soft:#17383A; --mark:#5E6B12;
+  --ok:#6FD39A; --ok-soft:#173A29; --bad:#F2917B; --bad-soft:#3A201B; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.75;padding-inline:16px}
+.wrap{max-width:780px;margin:0 auto;padding-block:24px 64px}
+h1,h2{font-family:var(--serif);text-wrap:balance;line-height:1.35;margin:0}
+h1{font-size:1.9rem}
+h2{font-size:1.35rem}
+header{display:flex;flex-direction:column;gap:.6rem;padding-bottom:1.2rem;border-bottom:2px solid var(--fg)}
+.meta{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;color:var(--muted);font-size:.9rem}
+.meta b{color:var(--fg);font-weight:500}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:8px 16px;display:flex;gap:6px;align-items:center;overflow-x:auto}
+nav a{flex:none;text-decoration:none;color:var(--fg);font-size:.85rem;padding:3px 11px;border:1px solid var(--line);border-radius:99px;background:var(--surface)}
+nav a:hover,nav a:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+#score{flex:none;margin-left:auto;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+#score b{color:var(--accent);font-weight:700}
+section{padding-top:2rem;scroll-margin-top:60px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .8rem;border-bottom:1px solid var(--line);padding-bottom:.4rem;margin-bottom:1rem}
+.sec-head span{color:var(--muted);font-size:.9rem}
+.q{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:.8rem 1rem;margin:0 0 .9rem;min-width:0}
+.q legend,.qtext{padding:0;font-weight:500}
+.q legend{float:left;width:100%;margin-bottom:.5rem}
+.q legend+*{clear:both}
+.opts{display:grid;gap:6px}
+.opt{font:inherit;text-align:left;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:.4rem .8rem;cursor:pointer;display:flex;gap:.6rem}
+.opt:hover:not(:disabled),.opt:focus-visible{border-color:var(--accent);outline:none}
+.opt b{color:var(--accent);font-weight:700;flex:none}
+.opt:disabled{cursor:default;color:var(--fg)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.exp{margin:.6rem 0 0;font-size:.92rem;color:var(--muted)}
+.exp b{color:var(--ok);font-weight:700}
+.exp.no b{color:var(--bad)}
+.fb{line-height:2.3}
+.fb input{font:inherit;width:8.5em;max-width:100%;color:var(--fg);background:var(--bg);border:0;border-bottom:2px solid var(--accent);padding:.1rem .4rem;text-align:center;border-radius:4px 4px 0 0}
+.fb input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.fb input.ok{background:var(--ok-soft);border-bottom-color:var(--ok)}
+.fb input.bad{background:var(--bad-soft);border-bottom-color:var(--bad)}
+.fb .ans{color:var(--bad);font-size:.85rem;margin-left:.2rem}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:1rem 0}
+button.main,button.alt{font:inherit;font-weight:500;border-radius:6px;padding:.45rem 1.1rem;cursor:pointer}
+button.main{background:var(--accent);color:var(--bg);border:1px solid var(--accent)}
+button.alt{background:var(--surface);color:var(--fg);border:1px solid var(--line)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.result{color:var(--muted);align-self:center;font-size:.92rem}
+.tw{overflow-x:auto;margin:.6rem 0;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{padding:6px 12px;text-align:center;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+th{background:var(--accent-soft);font-weight:500}
+tr:last-child td{border-bottom:0}
+details{margin-top:.6rem;border-top:1px dashed var(--line);padding-top:.5rem}
+summary{cursor:pointer;color:var(--accent);font-weight:500}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+details ul{margin:.4rem 0 0;padding-left:1.3rem;color:var(--fg)}
+details li{margin:.15rem 0}
+.mk{display:inline-block;margin-left:.4rem;font-size:.82rem;font-weight:500;color:var(--accent);border:1px solid var(--accent);border-radius:99px;padding:0 .6rem;line-height:1.5}
+footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}
+@media (max-width:480px){h1{font-size:1.55rem}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>高三生物科 第一段大測練習題</h1>
+  <div class="meta">
+    <span><b>範圍</b> 1.1–1.5、2.3–2.5</span>
+    <span><b>選擇題</b> 15 題,每題 2 分</span>
+    <span><b>填充題</b> 13 題</span>
+    <span><b>問答題</b> 8 題,共 34 分</span>
+  </div>
+</header>
+
+<nav aria-label="部分">
+  <a href="#mc">選擇題</a><a href="#fb">填充題</a><a href="#qa">問答題</a>
+  <span id="score" aria-live="polite"></span>
+</nav>
+
+<section id="mc">
+  <div class="sec-head"><h2>第一部分 選擇題</h2><span>點選答案後會立即顯示對錯和解釋</span></div>
+  <div id="mc-list"></div>
+  <div class="actions"><button class="alt" id="mc-reset" type="button">重做選擇題</button></div>
+</section>
+
+<section id="fb">
+  <div class="sec-head"><h2>第二部分 填充題</h2><span>答案可以是中文或常用英文縮寫</span></div>
+  <div id="fb-list"></div>
+  <div class="actions">
+    <button class="main" id="fb-check" type="button">核對答案</button>
+    <button class="alt" id="fb-reset" type="button">重做填充題</button>
+    <span class="result" id="fb-result"></span>
+  </div>
+</section>
+
+<section id="qa">
+  <div class="sec-head"><h2>第三部分 問答題</h2><span>先自己作答,再點開參考答案對照給分點</span></div>
+  <div id="qa-list"></div>
+</section>
+
+<footer>題目依校本高三級生物科第一段大測大綱編寫。</footer>
+</div>
+
+<script>
+var MC=[
+{q:"下列哪項屬於生物學的研究範疇?",o:["岩石的形成過程","植物如何進行光合作用","金屬導電的原理","光的折射現象"],a:1,e:"生物學研究生物和生命現象。其餘三項分別屬於地球科學、化學和物理。"},
+{q:"人的瞳孔在強光下縮小,這屬於哪項生物特徵?",o:["感應","排泄","生長","生殖"],a:0,e:"瞳孔縮小是對光這個刺激作出的反應,屬於感應。"},
+{q:"下列哪一項屬於排泄?",o:["排出未消化的食物殘渣","吃飽後體重增加","呼出二氧化碳","進食"],a:2,e:"排泄是排出新陳代謝產生的廢物。排出食物殘渣是排遺,不是排泄。"},
+{q:"下列哪一項是生物?",o:["火焰","汽車","雲","草履蟲"],a:3,e:"草履蟲是單細胞生物,能表現全部生命特徵。火焰、汽車和雲都沒有細胞,不能生殖。"},
+{q:"關於單細胞生物,下列哪項正確?",o:["要靠其他細胞完成呼吸","一個細胞就能獨立完成所有生命活動","不能進行生殖","不能對刺激作出反應"],a:1,e:"單細胞生物的一個細胞就能完成感應、運動、營養、呼吸、排泄、生長和生殖。"},
+{q:"某實驗研究「溫度對酵母菌產生氣體速率的影響」,自變量是哪一項?",o:["溫度","氣體產生的速率","酵母菌的質量","糖溶液的體積"],a:0,e:"自變量是實驗者刻意改變的因素,這裡是溫度。氣體產生的速率是因變量。"},
+{q:"在上題的實驗中,下列哪一項應作為控制變量?",o:["溫度","氣體產生的速率","酵母菌的質量","氣泡數量"],a:2,e:"控制變量要保持不變,酵母菌的質量每組都要相同。溫度是自變量,氣泡數量是因變量。"},
+{q:"要提高實驗結果的可靠性,下列哪項做法最適當?",o:["只用一個樣本以節省時間","增加樣本量並重複實驗","同時改變多個自變量","只記錄支持假設的數據"],a:1,e:"樣本量越大、重複次數越多,偶然誤差的影響越小,結果越可靠。"},
+{q:"電子顯微鏡出現後,人們看到細胞內更細小的結構。這說明甚麼?",o:["科技進步可以帶來新的科學發現","舊的科學知識永遠正確","科學家不需要實驗證據","細胞內的結構以前並不存在"],a:0,e:"科學知識建基於證據,技術進步能提供新證據,令知識不斷更新。"},
+{q:"提出「動物由細胞組成」的科學家是誰?",o:["胡克","施萊登","施旺","魏爾肖"],a:2,e:"施旺提出動物由細胞組成,施萊登提出植物由細胞組成。"},
+{q:"下列哪一項是植物細胞有、動物細胞沒有的結構?",o:["線粒體","細胞壁","核糖體","細胞膜"],a:1,e:"植物細胞特有細胞壁、葉綠體和大液泡。其餘三項兩者都有。"},
+{q:"睪丸細胞含有大量下列哪種細胞器?",o:["粗糙內質網","葉綠體","溶酶體","滑面內質網"],a:3,e:"睪丸細胞分泌的雄激素由脂質組成,滑面內質網負責合成和分泌脂質。"},
+{q:"下列哪種細胞器沒有膜?",o:["高爾基體","線粒體","核糖體","溶酶體"],a:2,e:"核糖體和中心體沒有膜。線粒體是雙層膜,高爾基體和溶酶體是單層膜。"},
+{q:"下列哪項按由小到大的複雜程度排列正確?",o:["細胞 → 器官 → 組織 → 系統","組織 → 細胞 → 器官 → 系統","細胞 → 組織 → 器官 → 系統","細胞 → 組織 → 系統 → 器官"],a:2,e:"組織層次是細胞、組織、器官、系統,再到生物體。"},
+{q:"原核細胞與真核細胞最主要的分別是甚麼?",o:["原核細胞沒有細胞膜","原核細胞沒有核糖體","原核細胞不以 DNA 作遺傳物質","原核細胞沒有核膜包圍的細胞核"],a:3,e:"原核細胞的 DNA 在擬核區域,沒有核膜,也沒有膜細胞器。兩者都有細胞膜、核糖體,並以 DNA 作遺傳物質。"}
+];
+
+var FB=[
+{t:"研究生物和生命現象的科學叫做{}。",a:[["生物學"]]},
+{t:"生物的七項基本特徵:感應、運動、營養、呼吸、排泄、生長和{}。",a:[["生殖"]]},
+{t:"實驗者刻意改變的變量叫{},隨之被量度的變量叫{}。",a:[["自變量"],["因變量"]]},
+{t:"實驗中必須保持不變的因素叫{}。",a:[["控制變量"]]},
+{t:"樣本量越{},實驗結果越可靠。",a:[["大","多"]]},
+{t:"首次用顯微鏡觀察軟木並命名「細胞」的科學家是{}。",a:[["胡克","hooke","羅伯特胡克"]]},
+{t:"提出「細胞來自細胞」的科學家是{}。",a:[["魏爾肖","virchow","菲爾紹","魏而肖"]]},
+{t:"進行有氧呼吸、釋放能量的細胞器是{}。",a:[["線粒體","粒線體"]]},
+{t:"負責合成和分泌脂質的細胞器是{}。",a:[["滑面內質網","sER","滑面ER","光面內質網"]]},
+{t:"含有水解酶、能分解細菌的細胞器是{}。",a:[["溶酶體","溶小體"]]},
+{t:"人體四大類組織是上皮組織、結締組織、肌肉組織和{}。",a:[["神經組織","神經"]]},
+{t:"原核細胞的 DNA 位於{}區域,沒有核膜包圍。",a:[["擬核","類核","核區"]]},
+{t:"病毒必須{}在宿主細胞內,才能複製並表現生物特徵。",a:[["寄生","寄宿","寄居"]]}
+];
+
+var QA=[
+{m:4,q:"同學說:「汽車會移動、消耗燃料並排出廢氣,所以汽車是生物。」你同意嗎?請解釋。",
+ p:["不同意(1 分)","汽車似乎有運動、營養(消耗燃料)和排泄(排出廢氣)的特徵(1 分)","但汽車不能生長,也不能生殖(1 分)","汽車沒有細胞結構,不能自行感應環境,所以不是生物(1 分)"]},
+{m:6,q:"某同學想研究光照強度是否影響豆苗的生長。請設計一個簡單實驗,寫出假設、自變量、因變量,以及兩項控制變量,並說明如何提高結果的可靠性。",
+ p:["假設:如果光照強度增加,豆苗長得更高(1 分)","自變量:光照強度,例如把豆苗放在離光源不同的距離(1 分)","因變量:豆苗的高度,每隔相同日數量度一次(1 分)","控制變量,任意兩項:豆苗品種、水量、溫度、泥土種類、種植日數(2 分)","每組用多株豆苗,並重複實驗,以提高可靠性(1 分)"]},
+{m:5,q:"下表是同學在不同距離量度水草每分鐘釋放氣泡數目的結果,每個距離只量度一次。光源越近,光照強度越大。",
+ tbl:[["光源距離 (cm)","10","20","30","40"],["氣泡數目 (個/分鐘)","32","21","12","6"]],
+ sub:"(a) 指出自變量和因變量。(b) 描述結果的趨勢,並引用數據。(c) 寫出結論。(d) 指出這個實驗的一項限制。",
+ p:["(a) 自變量是光源距離(光照強度),因變量是每分鐘氣泡數目(1 分)","(b) 光源越遠,氣泡數目越少(1 分);例如距離 10 cm 時有 32 個,40 cm 時只有 6 個(1 分)","(c) 光照強度越大,水草光合作用越快,釋放的氣泡越多(1 分)","(d) 限制,任意一項:每個距離只量度一次,樣本量不足;沒有重複實驗;只測試了四個距離(1 分)"]},
+{m:4,q:"解釋為甚麼胰腺細胞含有大量粗糙內質網(rER)和高爾基體。",
+ p:["胰腺細胞需要分泌大量消化酶(1 分)","消化酶是蛋白質(1 分)","rER 負責合成蛋白質,高爾基體負責加工和分泌蛋白質(1 分)","所以胰腺細胞含有大量 rER 和高爾基體(1 分)"]},
+{m:3,q:"解釋為甚麼肌肉細胞和小腸上皮細胞都含有大量線粒體。",
+ p:["線粒體進行有氧呼吸,釋放能量(1 分)","肌肉細胞需要能量進行收縮,小腸上皮細胞需要能量吸收營養(1 分)","所以這兩種細胞的線粒體特別發達(1 分)"]},
+{m:3,q:"解釋為甚麼白血球含有大量溶酶體。",
+ p:["白血球的主要功能是保護身體,抵抗外來微生物入侵(1 分)","溶酶體含有水解酶,能分解細菌(1 分)","所以白血球需要大量溶酶體(1 分)"]},
+{m:4,q:"以胃為例,說明身體的組織層次,並說明胃由哪些組織組成。",
+ p:["層次由小到大:細胞 → 組織 → 器官 → 系統(1 分)","胃是器官,屬於消化系統(1 分)","胃由上皮組織(分泌胃液)、肌肉組織(令胃蠕動)組成(1 分)","還有神經組織(傳遞信號)和結締組織(連接支持)(1 分)"]},
+{m:5,q:"比較原核細胞和真核細胞。請寫出三項分別和兩項共同結構。",
+ p:["分別一:原核細胞沒有核膜包圍的細胞核,DNA 在擬核;真核細胞有真正的細胞核(1 分)","分別二:原核細胞沒有膜細胞器;真核細胞有(1 分)","分別三,任意一項:原核細胞較小;細胞壁成分不同(1 分)","共同結構,任意兩項:細胞膜、細胞質、核糖體、以 DNA 作遺傳物質(2 分)"]}
+];
+
+var mcDone=0, mcRight=0, fbRight=0, fbTotal=0, fbChecked=false;
+FB.forEach(function(x){fbTotal+=x.a.length});
+
+function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n}
+function norm(s){return s.toLowerCase().replace(/[\s·.,。,、「」]/g,"")}
+
+function updateScore(){
+  var s="選擇題 <b>"+(mcRight*2)+"</b>/30";
+  if(fbChecked)s+="　填充題 <b>"+fbRight+"</b>/"+fbTotal;
+  document.getElementById("score").innerHTML=s;
+}
+
+function buildMC(){
+  var box=document.getElementById("mc-list");box.textContent="";mcDone=0;mcRight=0;
+  MC.forEach(function(item,qi){
+    var fs=el("fieldset","q");fs.style.margin="0 0 .9rem";
+    fs.appendChild(el("legend","",(qi+1)+". "+item.q));
+    var opts=el("div","opts"),exp=el("p","exp");exp.hidden=true;
+    var btns=[];
+    item.o.forEach(function(text,oi){
+      var b=el("button","opt");b.type="button";
+      b.appendChild(el("b","","ABCD"[oi]));b.appendChild(el("span","",text));
+      b.addEventListener("click",function(){
+        btns.forEach(function(x){x.disabled=true});
+        var ok=oi===item.a;
+        btns[item.a].classList.add("right");
+        if(!ok)b.classList.add("wrong");
+        exp.hidden=false;exp.className="exp"+(ok?"":" no");
+        exp.textContent="";
+        exp.appendChild(el("b","",ok?"答對了。":"答案是 "+"ABCD"[item.a]+"。"));
+        exp.appendChild(document.createTextNode(item.e));
+        mcDone++;if(ok)mcRight++;updateScore();
+      });
+      btns.push(b);opts.appendChild(b);
+    });
+    fs.appendChild(opts);fs.appendChild(exp);box.appendChild(fs);
+  });
+  updateScore();
+}
+
+function buildFB(){
+  var box=document.getElementById("fb-list");box.textContent="";
+  fbChecked=false;fbRight=0;document.getElementById("fb-result").textContent="";
+  FB.forEach(function(item,i){
+    var d=el("div","q fb");
+    d.appendChild(document.createTextNode((i+1)+". "));
+    item.t.split("{}").forEach(function(part,k,arr){
+      d.appendChild(document.createTextNode(part));
+      if(k<arr.length-1){
+        var inp=el("input");inp.type="text";inp.id="fb"+i+"_"+k;
+        inp.setAttribute("aria-label","第 "+(i+1)+" 題空格 "+(k+1));
+        inp.autocomplete="off";d.appendChild(inp);
+      }
+    });
+    box.appendChild(d);
+  });
+  updateScore();
+}
+
+function checkFB(){
+  fbRight=0;
+  FB.forEach(function(item,i){
+    item.a.forEach(function(acc,k){
+      var inp=document.getElementById("fb"+i+"_"+k);
+      var old=inp.parentNode.querySelectorAll(".ans[data-k='"+k+"']");
+      old.forEach(function(n){n.remove()});
+      var ok=acc.some(function(x){return norm(x)===norm(inp.value)});
+      inp.className=ok?"ok":"bad";
+      if(ok)fbRight++;
+      else{var s=el("span","ans","答案:"+acc[0]);s.dataset.k=k;inp.after(s)}
+    });
+  });
+  fbChecked=true;
+  document.getElementById("fb-result").textContent="答對 "+fbRight+" / "+fbTotal+" 個空格";
+  updateScore();
+}
+
+function buildQA(){
+  var box=document.getElementById("qa-list");
+  QA.forEach(function(item,i){
+    var d=el("div","q");
+    var qt=el("div","qtext",(i+1)+". "+item.q);
+    qt.appendChild(el("span","mk",item.m+" 分"));
+    d.appendChild(qt);
+    if(item.tbl){
+      var w=el("div","tw"),t=el("table");
+      item.tbl.forEach(function(r,ri){
+        var tr=el("tr");
+        r.forEach(function(c){tr.appendChild(el(ri===0||tr.children.length===0?"th":"td","",c))});
+        t.appendChild(tr);
+      });
+      w.appendChild(t);d.appendChild(w);
+      d.appendChild(el("p","qtext",item.sub));
+    }
+    var det=el("details");det.appendChild(el("summary","","參考答案及給分點"));
+    var ul=el("ul");item.p.forEach(function(x){ul.appendChild(el("li","",x))});
+    det.appendChild(ul);d.appendChild(det);box.appendChild(d);
+  });
+}
+
+document.getElementById("mc-reset").addEventListener("click",buildMC);
+document.getElementById("fb-reset").addEventListener("click",buildFB);
+document.getElementById("fb-check").addEventListener("click",checkFB);
+buildMC();buildFB();buildQA();
+</script>
+
+</body></html>
